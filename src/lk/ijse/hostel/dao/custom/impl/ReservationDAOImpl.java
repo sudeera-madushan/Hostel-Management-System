@@ -15,7 +15,7 @@ public class ReservationDAOImpl implements ReservationDAO {
     @Override
     public boolean save(Reservation entity){
         try {
-            session = FactoryConfiguration.factoryConfiguration.getSession();
+            session = FactoryConfiguration.getInstance().getSession();
             transaction = session.beginTransaction();
             session.save(entity);
             transaction.commit();
@@ -32,7 +32,7 @@ public class ReservationDAOImpl implements ReservationDAO {
     @Override
     public boolean delete(Reservation entity) {
         try {
-            session = FactoryConfiguration.factoryConfiguration.getSession();
+            session = FactoryConfiguration.getInstance().getSession();
             transaction = session.beginTransaction();
             session.delete(entity);
             transaction.commit();
@@ -49,7 +49,7 @@ public class ReservationDAOImpl implements ReservationDAO {
     @Override
     public boolean update(Reservation entity) {
         try {
-            session = FactoryConfiguration.factoryConfiguration.getSession();
+            session = FactoryConfiguration.getInstance().getSession();
             transaction = session.beginTransaction();
             session.update(entity);
             transaction.commit();
@@ -67,7 +67,7 @@ public class ReservationDAOImpl implements ReservationDAO {
     public List<Reservation> getAll(){
         List<Reservation> reservations;
         try {
-            session = FactoryConfiguration.factoryConfiguration.getSession();
+            session = FactoryConfiguration.getInstance().getSession();
             Query query = session.createQuery("from Reservation");
             reservations=query.list();
             return reservations;

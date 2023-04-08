@@ -24,4 +24,8 @@ public class Reservation {
     private Room room;
 
     private String status;
+
+    public Reservation(String res_id) {
+        this.res_id = res_id;
+    }
 }

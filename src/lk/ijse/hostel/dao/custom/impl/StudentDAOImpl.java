@@ -15,7 +15,7 @@ public class StudentDAOImpl implements StudentDAO {
     @Override
     public boolean save(Student entity) {
         try {
-            session = FactoryConfiguration.factoryConfiguration.getSession();
+            session = FactoryConfiguration.getInstance().getSession();
             transaction = session.beginTransaction();
             session.save(entity);
             transaction.commit();
@@ -32,7 +32,7 @@ public class StudentDAOImpl implements StudentDAO {
     @Override
     public boolean delete(Student entity){
         try {
-            session = FactoryConfiguration.factoryConfiguration.getSession();
+            session = FactoryConfiguration.getInstance().getSession();
             transaction = session.beginTransaction();
             session.delete(entity);
             transaction.commit();
@@ -49,7 +49,7 @@ public class StudentDAOImpl implements StudentDAO {
     @Override
     public boolean update(Student entity) {
         try {
-            session = FactoryConfiguration.factoryConfiguration.getSession();
+            session = FactoryConfiguration.getInstance().getSession();
             transaction = session.beginTransaction();
             session.update(entity);
             transaction.commit();
@@ -67,7 +67,7 @@ public class StudentDAOImpl implements StudentDAO {
     public List<Student> getAll() {
         List<Student> rooms;
         try {
-            session = FactoryConfiguration.factoryConfiguration.getSession();
+            session = FactoryConfiguration.getInstance().getSession();
             Query query = session.createQuery("from Student");
             rooms=query.list();
             return rooms;

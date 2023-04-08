@@ -16,7 +16,7 @@ public class RoomDAOImpl implements RoomDAO {
     @Override
     public boolean save(Room entity){
         try {
-            session = FactoryConfiguration.factoryConfiguration.getSession();
+            session = FactoryConfiguration.getInstance().getSession();
             transaction = session.beginTransaction();
             session.save(entity);
             transaction.commit();
@@ -33,7 +33,7 @@ public class RoomDAOImpl implements RoomDAO {
     @Override
     public boolean delete(Room entity){
         try {
-            session = FactoryConfiguration.factoryConfiguration.getSession();
+            session = FactoryConfiguration.getInstance().getSession();
             transaction = session.beginTransaction();
             session.delete(entity);
             transaction.commit();
@@ -50,7 +50,7 @@ public class RoomDAOImpl implements RoomDAO {
     @Override
     public boolean update(Room entity)  {
         try {
-            session = FactoryConfiguration.factoryConfiguration.getSession();
+            session = FactoryConfiguration.getInstance().getSession();
             transaction = session.beginTransaction();
             session.update(entity);
             transaction.commit();
@@ -68,7 +68,7 @@ public class RoomDAOImpl implements RoomDAO {
     public List<Room> getAll()  {
         List<Room> rooms;
         try {
-            session = FactoryConfiguration.factoryConfiguration.getSession();
+            session = FactoryConfiguration.getInstance().getSession();
             Query query = session.createQuery("from Room");
             rooms=query.list();
             return rooms;
