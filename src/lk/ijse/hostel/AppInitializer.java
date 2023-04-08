@@ -18,7 +18,7 @@ public class AppInitializer extends Application {
     public void start(Stage primaryStage) throws IOException {
         primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk/ijse/hostel/view/fxml/sign/LoginForm.fxml"))));
         primaryStage.centerOnScreen();
-        primaryStage.initStyle(StageStyle.UNDECORATED);
+//        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
     }
 }

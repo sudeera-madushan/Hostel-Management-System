@@ -7,21 +7,20 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="600.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostel.controller.dashboard.DashboardFromController">
+<AnchorPane fx:id="rootContext" prefHeight="600.0" prefWidth="960.0" style="-fx-background-color: #2B4865;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostel.controller.dashboard.DashboardFromController">
    <children>
-      <AnchorPane layoutX="47.0" layoutY="47.0" prefHeight="80.0" prefWidth="960.0" style="-fx-background-color: darkgray;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="47.0" layoutY="47.0" prefHeight="80.0" prefWidth="960.0" style="-fx-background-color: #002B5B;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox layoutX="23.0" layoutY="-2.0" prefHeight="80.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Pane prefHeight="80.0" prefWidth="228.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label layoutX="10.0" layoutY="8.0" style="-fx-text-fill: black;" text="D24">
+                        <Label layoutX="10.0" layoutY="8.0" style="-fx-text-fill: #256D85;" text="D24">
                            <font>
                               <Font name="Calibri Bold" size="42.0" />
                            </font>
                         </Label>
-                        <Label layoutX="9.0" layoutY="54.0" style="-fx-text-fill: black;" text="Hostel Management System">
+                        <Label layoutX="9.0" layoutY="54.0" style="-fx-text-fill: #8FE3CF;" text="Hostel Management System">
                            <font>
                               <Font name="System Italic" size="17.0" />
                            </font>
@@ -30,36 +29,45 @@
                   </Pane>
                   <Pane prefHeight="96.0" prefWidth="163.0">
                      <children>
-                        <Label fx:id="lblHome" layoutX="39.0" layoutY="20.0" onMouseClicked="#lblOpenHomeOnAction" text="Home" textFill="#5153f5">
+                        <Label fx:id="lblHome" layoutX="39.0" layoutY="20.0" onMouseClicked="#lblOpenHomeOnAction" text="Home" textFill="#8fe3cf">
                            <font>
-                              <Font name="Calibri Bold Italic" size="36.0" />
+                              <Font name="Calibri Bold Italic" size="27.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="481.0" layoutY="10.0" prefHeight="96.0" prefWidth="163.0">
+                     <children>
+                        <Label fx:id="lblReservation" layoutX="8.0" layoutY="20.0" onMouseClicked="#lblOpenReservationOnAction" text="Reservation" textFill="#8fe3cf">
+                           <font>
+                              <Font name="Calibri Bold Italic" size="27.0" />
                            </font>
                         </Label>
                      </children>
                   </Pane>
                   <Pane layoutX="522.0" layoutY="10.0" prefHeight="96.0" prefWidth="163.0">
                      <children>
-                        <Label fx:id="lblRoom" layoutX="34.0" layoutY="20.0" onMouseClicked="#lblOpenRoomsOnAction" text="Rooms" textFill="#5153f5">
+                        <Label fx:id="lblRoom" layoutX="34.0" layoutY="20.0" onMouseClicked="#lblOpenRoomsOnAction" text="Rooms" textFill="#8fe3cf">
                            <font>
-                              <Font name="Calibri Bold Italic" size="36.0" />
+                              <Font name="Calibri Bold Italic" size="27.0" />
                            </font>
                         </Label>
                      </children>
                   </Pane>
                   <Pane layoutX="807.0" layoutY="10.0" prefHeight="96.0" prefWidth="163.0">
                      <children>
-                        <Label fx:id="lblStudent" layoutX="24.0" layoutY="20.0" onMouseClicked="#lblOpenStudentOnAction" text="Student" textFill="#5153f5">
+                        <Label fx:id="lblStudent" layoutX="24.0" layoutY="20.0" onMouseClicked="#lblOpenStudentOnAction" text="Student" textFill="#8fe3cf">
                            <font>
-                              <Font name="Calibri Bold Italic" size="36.0" />
+                              <Font name="Calibri Bold Italic" size="27.0" />
                            </font>
                         </Label>
                      </children>
                   </Pane>
                   <Pane layoutX="807.0" layoutY="10.0" prefHeight="96.0" prefWidth="163.0">
                      <children>
-                        <Label fx:id="lblProfile" layoutX="34.0" layoutY="21.0" onMouseClicked="#lblOpenProfileOnAction" text="Profile" textFill="#5153f5">
+                        <Label fx:id="lblProfile" layoutX="34.0" layoutY="21.0" onMouseClicked="#lblOpenProfileOnAction" text="Profile" textFill="#8fe3cf">
                            <font>
-                              <Font name="Calibri Bold Italic" size="36.0" />
+                              <Font name="Calibri Bold Italic" size="27.0" />
                            </font>
                         </Label>
                      </children>
@@ -71,6 +79,6 @@
             <DropShadow />
          </effect>
       </AnchorPane>
-      <AnchorPane layoutX="47.0" layoutY="139.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0" />
+      <AnchorPane fx:id="workingContext" layoutX="47.0" layoutY="139.0" prefHeight="520.0" prefWidth="960.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0" />
    </children>
 </AnchorPane>
