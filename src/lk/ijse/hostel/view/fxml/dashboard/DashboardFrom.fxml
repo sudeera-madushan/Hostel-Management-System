@@ -1,84 +1,220 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootContext" prefHeight="600.0" prefWidth="960.0" style="-fx-background-color: #2B4865;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostel.controller.dashboard.DashboardFromController">
+<AnchorPane fx:id="rootContext" prefHeight="570.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostel.controller.dashboard.DashboardFromController">
    <children>
-      <AnchorPane layoutX="47.0" layoutY="47.0" prefHeight="80.0" prefWidth="960.0" style="-fx-background-color: #002B5B;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <HBox layoutX="23.0" layoutY="-2.0" prefHeight="80.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Pane prefHeight="80.0" prefWidth="228.0" HBox.hgrow="ALWAYS">
-                     <children>
-                        <Label layoutX="10.0" layoutY="8.0" style="-fx-text-fill: #256D85;" text="D24">
-                           <font>
-                              <Font name="Calibri Bold" size="42.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="9.0" layoutY="54.0" style="-fx-text-fill: #8FE3CF;" text="Hostel Management System">
-                           <font>
-                              <Font name="System Italic" size="17.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
-                  <Pane prefHeight="96.0" prefWidth="163.0">
-                     <children>
-                        <Label fx:id="lblHome" layoutX="39.0" layoutY="20.0" onMouseClicked="#lblOpenHomeOnAction" text="Home" textFill="#8fe3cf">
-                           <font>
-                              <Font name="Calibri Bold Italic" size="27.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
-                  <Pane layoutX="481.0" layoutY="10.0" prefHeight="96.0" prefWidth="163.0">
-                     <children>
-                        <Label fx:id="lblReservation" layoutX="8.0" layoutY="20.0" onMouseClicked="#lblOpenReservationOnAction" text="Reservation" textFill="#8fe3cf">
-                           <font>
-                              <Font name="Calibri Bold Italic" size="27.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
-                  <Pane layoutX="522.0" layoutY="10.0" prefHeight="96.0" prefWidth="163.0">
-                     <children>
-                        <Label fx:id="lblRoom" layoutX="34.0" layoutY="20.0" onMouseClicked="#lblOpenRoomsOnAction" text="Rooms" textFill="#8fe3cf">
-                           <font>
-                              <Font name="Calibri Bold Italic" size="27.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
-                  <Pane layoutX="807.0" layoutY="10.0" prefHeight="96.0" prefWidth="163.0">
-                     <children>
-                        <Label fx:id="lblStudent" layoutX="24.0" layoutY="20.0" onMouseClicked="#lblOpenStudentOnAction" text="Student" textFill="#8fe3cf">
-                           <font>
-                              <Font name="Calibri Bold Italic" size="27.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
-                  <Pane layoutX="807.0" layoutY="10.0" prefHeight="96.0" prefWidth="163.0">
-                     <children>
-                        <Label fx:id="lblProfile" layoutX="34.0" layoutY="21.0" onMouseClicked="#lblOpenProfileOnAction" text="Profile" textFill="#8fe3cf">
-                           <font>
-                              <Font name="Calibri Bold Italic" size="27.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
-               </children>
-            </HBox>
-         </children>
+      <AnchorPane layoutX="5.0" layoutY="5.0" prefHeight="35.0" prefWidth="1014.0" style="-fx-background-color: #f8f8f8;" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
          <effect>
-            <DropShadow />
+            <DropShadow blurType="GAUSSIAN" height="18.6" radius="4.15" width="0.0" />
          </effect>
+         <children>
+            <Label layoutX="8.0" layoutY="-2.0" style="-fx-text-fill: #4895ef;" text="D24">
+               <font>
+                  <Font name="Calibri Bold" size="42.0" />
+               </font>
+            </Label>
+            <Label layoutX="101.0" layoutY="10.0" style="-fx-text-fill: #4895ef;" text="Hostel Management System">
+               <font>
+                  <Font name="System Italic" size="17.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="35.0" fitWidth="25.0" layoutX="920.0" layoutY="11.0" onMouseClicked="#minimizeOnAction" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="79.0" AnchorPane.topAnchor="11.0">
+               <image>
+                  <Image url="@../../assest/images/minus.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="25.0" layoutX="951.0" layoutY="11.0" onMouseClicked="#maximizeOnAction" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="11.0">
+               <image>
+                  <Image url="@../../assest/images/full.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="25.0" layoutX="982.0" layoutY="11.0" onMouseClicked="#closeOnAction" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="11.0">
+               <image>
+                  <Image url="@../../assest/images/close.png" />
+               </image>
+            </ImageView>
+         </children>
       </AnchorPane>
-      <AnchorPane fx:id="workingContext" layoutX="47.0" layoutY="139.0" prefHeight="520.0" prefWidth="960.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0" />
+      <AnchorPane fx:id="workingContext" layoutX="137.0" layoutY="67.0" prefHeight="484.0" prefWidth="872.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="137.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="67.0">
+         <effect>
+            <DropShadow height="1.0" radius="0.0" width="0.0" />
+         </effect>
+         <children>
+            <VBox layoutX="101.0" layoutY="47.0" prefHeight="311.0" prefWidth="872.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <HBox prefHeight="156.0" prefWidth="872.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Pane prefHeight="123.0" prefWidth="327.0" style="-fx-background-color: linear-gradient(to left, #fd67ad,#ff875e)linear-gradient(to left, #fd67ad,#ff875e);" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
+                           </HBox.margin>
+                           <effect>
+                              <DropShadow color="#ffffff7e" />
+                           </effect>
+                           <children>
+                              <ImageView fitHeight="117.0" fitWidth="198.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assest/images/studentt.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="10.0" layoutY="10.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="316.0" style="-fx-background-color: linear-gradient(to left, #2a84be,#8d70ee);" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
+                           </HBox.margin>
+                           <effect>
+                              <DropShadow color="#ffffff7e" />
+                           </effect>
+                           <children>
+                              <ImageView fitHeight="117.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assest/images/roomm.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="156.0" prefWidth="872.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Pane prefHeight="123.0" prefWidth="327.0" style="-fx-background-color: linear-gradient(to left, #109bd3,#3ad1c0)linear-gradient(to left, #109bd3,#3ad1c0);" styleClass="backgrountColor" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
+                           </HBox.margin>
+                           <effect>
+                              <DropShadow color="#ffffff7e" />
+                           </effect>
+                           <children>
+                              <ImageView fitHeight="117.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assest/images/boking.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="10.0" layoutY="10.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="316.0" style="-fx-background-color: linear-gradient(to left, #8363f9,#ec6fea);" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
+                           </HBox.margin>
+                           <effect>
+                              <DropShadow color="#ffffff7e" />
+                           </effect>
+                           <children>
+                              <ImageView fitHeight="117.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assest/images/nopay.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <BarChart layoutX="36.0" layoutY="388.0" prefHeight="186.0" prefWidth="501.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="298.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </BarChart>
+         </children></AnchorPane>
+      <VBox layoutX="21.0" layoutY="90.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #f8f8f8; -fx-background-radius: 5 5 5 5;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="70.0">
+         <effect>
+            <DropShadow height="5.0" radius="2.0" width="5.0" />
+         </effect>
+         <children>
+            <AnchorPane fx:id="paneHome" onMouseClicked="#lblOpenHomeOnAction" prefHeight="91.0" prefWidth="100.0" styleClass="pane" stylesheets="@../../assest/styles/MyStyle.css">
+               <children>
+                  <ImageView fitHeight="47.0" fitWidth="57.0" layoutX="26.0" layoutY="8.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="8.0">
+                     <image>
+                        <Image url="@../../assest/images/home.png" />
+                     </image>
+                  </ImageView>
+                  <Line endX="100.0" layoutX="-15.0" layoutY="90.0" startX="27.666671752929688" AnchorPane.bottomAnchor="0.5" AnchorPane.leftAnchor="11.5" AnchorPane.rightAnchor="14.5" />
+                  <Label layoutX="32.0" layoutY="62.0" text="Home" AnchorPane.bottomAnchor="12.0">
+                     <font>
+                        <Font name="Calibri Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="paneReservation" layoutX="10.0" layoutY="10.0" onMouseClicked="#lblOpenReservationOnAction" prefHeight="91.0" prefWidth="100.0" styleClass="pane" stylesheets="@../../assest/styles/MyStyle.css">
+               <children>
+                  <ImageView fitHeight="43.0" fitWidth="50.0" layoutX="27.0" layoutY="10.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="38.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="10.0">
+                     <image>
+                        <Image url="@../../assest/images/reservation.png" />
+                     </image>
+                  </ImageView>
+                  <Line endX="100.0" layoutX="-15.0" layoutY="90.0" startX="27.666671752929688" AnchorPane.bottomAnchor="0.5" AnchorPane.leftAnchor="11.5" AnchorPane.rightAnchor="14.5" />
+                  <Label layoutX="16.0" layoutY="61.0" text="Reservation" AnchorPane.bottomAnchor="13.0">
+                     <font>
+                        <Font name="Calibri Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="paneRoom" layoutX="10.0" layoutY="10.0" onMouseClicked="#lblOpenRoomsOnAction" prefHeight="91.0" prefWidth="100.0" styleClass="pane" stylesheets="@../../assest/styles/MyStyle.css">
+               <children>
+                  <ImageView fitHeight="47.0" fitWidth="57.0" layoutX="26.0" layoutY="8.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="8.0">
+                     <image>
+                        <Image url="@../../assest/images/room.png" />
+                     </image>
+                  </ImageView>
+                  <Line endX="100.0" layoutX="-15.0" layoutY="90.0" startX="27.666671752929688" AnchorPane.bottomAnchor="0.5" AnchorPane.leftAnchor="11.5" AnchorPane.rightAnchor="14.5" />
+                  <Label layoutX="30.0" layoutY="62.0" text="Rooms" AnchorPane.bottomAnchor="12.0">
+                     <font>
+                        <Font name="Calibri Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="paneStudent" layoutX="10.0" layoutY="10.0" onMouseClicked="#lblOpenStudentOnAction" prefHeight="91.0" prefWidth="100.0" styleClass="pane" stylesheets="@../../assest/styles/MyStyle.css">
+               <children>
+                  <ImageView fitHeight="47.0" fitWidth="57.0" layoutX="26.0" layoutY="8.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="8.0">
+                     <image>
+                        <Image url="@../../assest/images/student.png" />
+                     </image>
+                  </ImageView>
+                  <Line endX="100.0" layoutX="-15.0" layoutY="90.0" startX="27.666671752929688" AnchorPane.bottomAnchor="0.5" AnchorPane.leftAnchor="11.5" AnchorPane.rightAnchor="14.5" />
+                  <Label layoutX="27.0" layoutY="62.0" text="Student" AnchorPane.bottomAnchor="12.0">
+                     <font>
+                        <Font name="Calibri Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="paneProfile" layoutX="10.0" layoutY="10.0" onMouseClicked="#lblOpenProfileOnAction" prefHeight="91.0" prefWidth="100.0" styleClass="pane" stylesheets="@../../assest/styles/MyStyle.css">
+               <children>
+                  <ImageView fitHeight="47.0" fitWidth="57.0" layoutX="26.0" layoutY="8.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="8.0">
+                     <image>
+                        <Image url="@../../assest/images/profile.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="30.0" layoutY="62.0" text="Profile" AnchorPane.bottomAnchor="12.0">
+                     <font>
+                        <Font name="Calibri Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

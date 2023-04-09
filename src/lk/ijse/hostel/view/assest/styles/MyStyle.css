@@ -12,6 +12,13 @@
     -fx-background-color: -root;
 }
 
+.pane {
+    -fx-background-radius: 10 10 10 10;
+}
+
+.backgrountColor{
+    -fx-background-color:   linear-gradient(to left, #8363f9,#ec6fea)
+}
 .h1 {
     -fx-font-size: 25;
     -fx-font-family: "Rimouski Sb";
@@ -148,7 +155,7 @@
 .table-view .column-header,
 .table-view .column-header-background .filler {
     -fx-cell-size : 20;
-    -fx-background-color: #256D85;
+    -fx-background-color: #ced4da;
 }
 
 .table-view .column-header .label {
