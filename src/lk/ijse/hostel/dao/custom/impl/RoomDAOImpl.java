@@ -2,6 +2,7 @@ package lk.ijse.hostel.dao.custom.impl;
 
 import lk.ijse.hostel.dao.custom.RoomDAO;
 import lk.ijse.hostel.entity.Room;
+import lk.ijse.hostel.entity.Student;
 import lk.ijse.hostel.util.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -82,7 +83,18 @@ public class RoomDAOImpl implements RoomDAO {
 
     @Override
     public String getLastId() {
-        return null;
+        List<Room> rooms;
+        try {
+            session = FactoryConfiguration.getInstance().getSession();
+            Query query = session.createQuery("from Room order by room_type_id desc ");
+            rooms=query.list();
+            return rooms.get(0).getRoom_type_id();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            session.close();
+        }
     }
 
     @Override

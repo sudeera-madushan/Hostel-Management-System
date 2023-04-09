@@ -44,7 +44,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </JFXButton>
-            <Label fx:id="lblStudentID" layoutX="67.0" layoutY="86.0" text="Room Type ID :" />
+            <Label fx:id="lblRoomID" layoutX="67.0" layoutY="86.0" text="Room Type ID :" />
             <JFXTextField fx:id="txtRoomType" labelFloat="true" layoutX="298.0" layoutY="79.0" promptText="Type :" />
             <JFXTextField fx:id="txtKeyMoney" labelFloat="true" layoutX="67.0" layoutY="133.0" promptText="Key Money (LKR)" />
             <JFXTextField fx:id="txtRoomQTY" labelFloat="true" layoutX="297.0" layoutY="133.0" promptText="Room QTY :" />

@@ -31,4 +31,8 @@ public class StudentDTO {
         this.dob = dob;
         this.gender = gender;
     }
+
+    public StudentDTO(String student_id) {
+        this.student_id = student_id;
+    }
 }

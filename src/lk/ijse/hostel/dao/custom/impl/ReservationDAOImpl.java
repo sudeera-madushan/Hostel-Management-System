@@ -2,6 +2,7 @@ package lk.ijse.hostel.dao.custom.impl;
 
 import lk.ijse.hostel.dao.custom.ReservationDAO;
 import lk.ijse.hostel.entity.Reservation;
+import lk.ijse.hostel.entity.Room;
 import lk.ijse.hostel.util.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -81,6 +82,17 @@ public class ReservationDAOImpl implements ReservationDAO {
 
     @Override
     public String getLastId() {
-        return null;
+        List<Reservation> rooms;
+        try {
+            session = FactoryConfiguration.getInstance().getSession();
+            Query query = session.createQuery("from Reservation order by res_id desc ");
+            rooms=query.list();
+            return rooms.get(0).getRes_id();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            session.close();
+        }
     }
 }

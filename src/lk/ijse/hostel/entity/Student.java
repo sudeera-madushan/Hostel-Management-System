@@ -26,4 +26,7 @@ public class Student {
     @OneToMany(mappedBy = "res_id", cascade = CascadeType.ALL)
     private List<Reservation> reservations=new ArrayList<>();
 
+    public Student(String student_id) {
+        this.student_id = student_id;
+    }
 }

@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -12,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.hostel.bo.BOFactory;
 import lk.ijse.hostel.bo.custom.RoomBO;
+import lk.ijse.hostel.dto.RoomDTO;
 import lk.ijse.hostel.dto.tm.RoomTM;
 
 import java.util.stream.Collectors;
@@ -26,7 +28,7 @@ public class RoomFormController {
     public JFXTextField txtRoomQTY;
     public JFXTextField txtKeyMoney;
     public AnchorPane roomContext;
-    public Label lblStudentID;
+    public Label lblRoomID;
     public JFXTextField txtRoomType;
     public TableView tblRoom;
     private RoomBO roomBO;
@@ -50,7 +52,7 @@ public class RoomFormController {
     private void reloadTable() {
         roomTMS.clear();
         roomTMS.addAll(roomBO.getAll().stream().map(roomDTO -> new RoomTM(
-                roomDTO.getRoom_type_id(), roomDTO.getType(),roomDTO.getKey_money(),roomDTO.getQty()
+                roomDTO.getRoom_type_id(), roomDTO.getType(),roomDTO.getKey_money().toString(),roomDTO.getQty()
         )).collect(Collectors.toList()));
         tblRoom.setItems(roomTMS);
     }
@@ -61,6 +63,7 @@ public class RoomFormController {
 
     public void btnNewRoomOnAction(ActionEvent actionEvent) {
         roomContext.setVisible(true);
+        lblRoomID.setText("Room ID :"+roomBO.getNextID());
     }
 
     public void btnCancelRoomOnAction(ActionEvent actionEvent) {
@@ -68,9 +71,16 @@ public class RoomFormController {
     }
 
     public void btnSaveRoomOnAction(ActionEvent actionEvent) {
+        if(roomBO.saveRoom(new RoomDTO(
+                lblRoomID.getText().split(":")[1]
+                ,txtRoomType.getText()
+                ,Double.parseDouble(txtKeyMoney.getText())
+                ,Integer.parseInt(txtRoomQTY.getText())
+        ))) {
+            new Alert(Alert.AlertType.CONFIRMATION,"Room Added !!!!!!").show();
         roomContext.setVisible(false);
-    }
+        reloadTable();
+        }
 
-    public void btnNewRoomTypeOnAction(ActionEvent actionEvent) {
     }
 }

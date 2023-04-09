@@ -9,4 +9,10 @@ public interface RoomBO extends SuperBo {
     List<RoomDTO> getAll();
 
     RoomDTO findRoom(String s);
+
+    boolean saveRoom(RoomDTO roomDTO);
+
+    String getNextID();
+
+    boolean checkQTY(String id);
 }

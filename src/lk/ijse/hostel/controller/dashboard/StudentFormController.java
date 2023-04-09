@@ -85,8 +85,6 @@ public class StudentFormController {
                 new String("#" + dto.getRoom_type_id() + " " + dto.getType())).collect(Collectors.toList()));
         binding.setOnAutoCompleted(event -> setRoomLable(roomBO.findRoom(txtFindRoom.getText().split(" ")[0]
                 .split("#")[1])));
-            txtFindRoom.setOnAction(event -> System.out.println(txtFindRoom.getText().split(" ")[0]
-                    .split("#")[1]));
         txtFindRoom.setOnAction(event -> setRoomLable(roomBO.findRoom(txtFindRoom.getText().split(" ")[0]
                 .split("#")[1])));
     }
@@ -120,7 +118,7 @@ public class StudentFormController {
                 ,dtpDOB.getValue()
                 ,gender.getToggles().get(0).isSelected()? "Male" : "Female"
         ))){
-            new Alert(Alert.AlertType.NONE,"Student Added !!!!!!!!!!!");
+            new Alert(Alert.AlertType.CONFIRMATION,"Student Added !!!!!!!!!!!").show();
         }
         reloadTable();
     }
