@@ -16,5 +16,5 @@ public class RoomDTO {
     private String type;
     private String key_money;
     private int qty;
-    private List<ReservationDTO> rooms=new ArrayList<>();
+    private List<ReservationDTO> reservationDTOS=new ArrayList<>();
 }

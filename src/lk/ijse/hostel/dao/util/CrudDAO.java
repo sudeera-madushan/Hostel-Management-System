@@ -11,4 +11,5 @@ public interface CrudDAO<T, ID> extends SuperDAO {
 
     List<T> getAll();
 
+    String getLastId();
 }

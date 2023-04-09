@@ -79,4 +79,22 @@ public class RoomDAOImpl implements RoomDAO {
             session.close();
         }
     }
+
+    @Override
+    public String getLastId() {
+        return null;
+    }
+
+    @Override
+    public Room find(String s) {
+        try {
+            session = FactoryConfiguration.getInstance().getSession();
+            return session.get(Room.class, s);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            session.close();
+        }
+    }
 }

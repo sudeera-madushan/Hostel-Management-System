@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="workingContext" prefHeight="520.0" prefWidth="960.0" stylesheets="@../../assest/styles/MyStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostel.controller.dashboard.RoomFormController" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0">
+<AnchorPane fx:id="workingContext" prefHeight="520.0" prefWidth="960.0" stylesheets="@../../assest/styles/MyStyle.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostel.controller.dashboard.RoomFormController">
    <children>
-      <TableView layoutX="36.0" layoutY="38.0" prefHeight="404.0" prefWidth="890.0" AnchorPane.bottomAnchor="78.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="38.0">
+      <TableView fx:id="tblRoom" layoutX="36.0" layoutY="38.0" prefHeight="404.0" prefWidth="890.0" AnchorPane.bottomAnchor="78.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="38.0">
         <columns>
           <TableColumn fx:id="clmRoomTypeID" prefWidth="75.0" sortType="DESCENDING" text="Room Type ID" />
           <TableColumn fx:id="clmType" prefWidth="75.0" sortType="DESCENDING" text="Type" />
@@ -26,5 +27,28 @@
             <Font name="System Bold" size="19.0" />
          </font>
       </JFXButton>
+      <AnchorPane fx:id="roomContext" layoutX="391.0" layoutY="74.0" prefHeight="260.0" prefWidth="522.0" style="-fx-background-color: #d6d6d6; -fx-background-radius: 10 10 10 10;" AnchorPane.rightAnchor="47.0" AnchorPane.topAnchor="74.0">
+         <children>
+            <Label layoutX="234.0" layoutY="32.0" text="Add Room" textFill="#28a0e1">
+               <font>
+                  <Font name="Cambria Bold" size="16.0" />
+               </font>
+            </Label>
+            <JFXButton layoutX="443.0" layoutY="206.0" onAction="#btnSaveRoomOnAction" style="-fx-background-color: #24cc48;" text="Save" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="383.0" layoutY="206.0" onAction="#btnCancelRoomOnAction" text="Cancel" textFill="#24cc48">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <Label fx:id="lblStudentID" layoutX="67.0" layoutY="86.0" text="Room Type ID :" />
+            <JFXTextField fx:id="txtRoomType" labelFloat="true" layoutX="298.0" layoutY="79.0" promptText="Type :" />
+            <JFXTextField fx:id="txtKeyMoney" labelFloat="true" layoutX="67.0" layoutY="133.0" promptText="Key Money (LKR)" />
+            <JFXTextField fx:id="txtRoomQTY" labelFloat="true" layoutX="297.0" layoutY="133.0" promptText="Room QTY :" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

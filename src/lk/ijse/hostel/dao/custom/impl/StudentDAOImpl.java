@@ -78,4 +78,20 @@ public class StudentDAOImpl implements StudentDAO {
             session.close();
         }
     }
+
+    @Override
+    public String getLastId() {
+        List<Student> rooms;
+        try {
+            session = FactoryConfiguration.getInstance().getSession();
+            Query query = session.createQuery("from Student order by student_id desc ");
+            rooms=query.list();
+            return rooms.get(0).getStudent_id();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            session.close();
+        }
+    }
 }

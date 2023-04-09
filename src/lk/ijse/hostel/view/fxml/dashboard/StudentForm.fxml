@@ -13,7 +13,7 @@
 
 <AnchorPane fx:id="workingContext" prefHeight="520.0" prefWidth="960.0" stylesheets="@../../assest/styles/MyStyle.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostel.controller.dashboard.StudentFormController">
    <children>
-      <TableView layoutX="36.0" layoutY="38.0" prefHeight="404.0" prefWidth="890.0" AnchorPane.bottomAnchor="78.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="38.0">
+      <TableView fx:id="tblStudent" layoutX="36.0" layoutY="38.0" prefHeight="404.0" prefWidth="890.0" AnchorPane.bottomAnchor="78.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="38.0">
         <columns>
           <TableColumn fx:id="clmStudentID" maxWidth="2000.0" prefWidth="75.0" sortType="DESCENDING" text="Student ID" />
           <TableColumn fx:id="clmName" prefWidth="75.0" sortType="DESCENDING" text="Name" />
