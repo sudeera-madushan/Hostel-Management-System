@@ -23,5 +23,6 @@ public class StudentTM {
         this.dob = dob;
         this.gender = gender;
         this.edit=new JFXButton("Edit");
+        edit.setStyle("-fx-background-color: green");
     }
 }

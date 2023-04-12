@@ -32,4 +32,9 @@ public class ReservationBOImpl implements ReservationBO {
     public List<ReservationDTO> getAll() {
         return reservationDAO.getAll().stream().map(entity -> converter.toReservation(entity)).collect(Collectors.toList());
     }
+
+    @Override
+    public boolean updateReservation(ReservationDTO dto) {
+        return reservationDAO.update(converter.fromReservation(dto));
+    }
 }

@@ -15,4 +15,6 @@ public interface RoomBO extends SuperBo {
     String getNextID();
 
     boolean checkQTY(String id);
+
+    boolean updateRoom(RoomDTO roomDTO);
 }

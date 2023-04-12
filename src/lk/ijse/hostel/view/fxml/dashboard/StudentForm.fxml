@@ -34,7 +34,7 @@
       </JFXButton>
       <AnchorPane fx:id="studentContext" layoutX="381.0" layoutY="64.0" prefHeight="341.0" prefWidth="522.0" style="-fx-background-color: #d6d6d6; -fx-background-radius: 10 10 10 10;" AnchorPane.rightAnchor="57.0" AnchorPane.topAnchor="64.0">
          <children>
-            <Label layoutX="194.0" layoutY="26.0" text="Add Student" textFill="#28a0e1">
+            <Label fx:id="lblTitle" layoutX="194.0" layoutY="26.0" text="Add Student" textFill="#28a0e1">
                <font>
                   <Font name="Cambria Bold" size="16.0" />
                </font>
@@ -70,12 +70,12 @@
                   <Font size="14.0" />
                </font>
             </JFXTextField>
-            <Label layoutX="40.0" layoutY="228.0" text="Find Room :">
+            <Label fx:id="lblTextFindRoom" layoutX="40.0" layoutY="228.0" text="Find Room :">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="lblRoomDetails" layoutX="43.0" layoutY="264.0" prefHeight="17.0" prefWidth="419.0" text="Label" />
+            <Label fx:id="lblRoomDetails" layoutX="43.0" layoutY="264.0" prefHeight="45.0" prefWidth="419.0" text="Label" />
          </children>
       </AnchorPane>
    </children>

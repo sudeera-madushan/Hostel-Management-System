@@ -1,5 +1,7 @@
 package lk.ijse.hostel.controller.dashboard;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
@@ -8,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import lk.ijse.hostel.bo.BOFactory;
 import lk.ijse.hostel.bo.custom.ReservationBO;
 import lk.ijse.hostel.bo.custom.RoomBO;
@@ -16,6 +19,7 @@ import lk.ijse.hostel.dto.ReservationDTO;
 import lk.ijse.hostel.dto.RoomDTO;
 import lk.ijse.hostel.dto.StudentDTO;
 import lk.ijse.hostel.dto.tm.ReservationTM;
+import lk.ijse.hostel.util.Regex;
 import org.controlsfx.control.textfield.TextFields;
 
 import java.util.stream.Collectors;
@@ -44,17 +48,56 @@ public class ReservationFormController {
     public Label lblStudentID;
     public AnchorPane studentContext;
     public TableView tblReservation;
+    public JFXCheckBox chbNoPay;
+    public JFXButton btnNewStudent;
+    public JFXButton btnNewRoom;
     private ReservationBO reservationBO;
     private StudentBO studentBO;
     private RoomBO roomBO;
     private ObservableList<ReservationTM> reservationTMS= FXCollections.observableArrayList();
+    private boolean isUpdate=false;
+
     public void initialize(){
         reservationBO= (ReservationBO) BOFactory.getBoFactory().getBo(BOFactory.BOType.RESERVATION);
         studentBO= (StudentBO) BOFactory.getBoFactory().getBo(BOFactory.BOType.STUDENT);
         roomBO= (RoomBO) BOFactory.getBoFactory().getBo(BOFactory.BOType.ROOM);
         setOther();
         setTable();
+        setTextField();
+        reservationContext.setVisible(false);
+        status.getToggles().get(0).setSelected(true);
+        gender.getToggles().get(0).setSelected(true);
     }
+
+    private void setTextField() {
+        txtStudent.setOnKeyReleased(event -> checkResTextField());
+        txtRoom.setOnKeyReleased(event -> checkResTextField());
+        txtName.setOnKeyReleased(event -> checkStdTextField());
+        txtAddress.setOnKeyReleased(event -> checkStdTextField());
+        txtContactNo.setOnKeyReleased(event -> checkStdTextField());
+
+    }
+
+    private boolean checkResTextField() {
+        if (txtStudent.getText().equals("")) {
+            txtStudent.setFocusColor(Color.RED);
+            txtStudent.setUnFocusColor(Color.RED);
+            return false;
+        }else {
+            txtStudent.setFocusColor(Color.GREEN);
+            txtStudent.setUnFocusColor(Color.GREEN);
+            if (txtRoom.getText().equals("")) {
+                txtRoom.setFocusColor(Color.RED);
+                txtRoom.setUnFocusColor(Color.RED);
+                return false;
+            }else {
+                txtRoom.setFocusColor(Color.GREEN);
+                txtRoom.setUnFocusColor(Color.GREEN);
+                return true;
+            }
+        }
+    }
+
     private void setTable() {
         clmReservationID.setCellValueFactory(new PropertyValueFactory<>("res_id"));
         clmDate.setCellValueFactory(new PropertyValueFactory<>("date"));
@@ -69,9 +112,15 @@ public class ReservationFormController {
 
     private void reloadTable() {
         reservationTMS.clear();
-        reservationTMS.addAll(reservationBO.getAll().stream().map(dto -> new ReservationTM(dto.getRes_id()
-                ,dto.getDate(),dto.getStudent().getStudent_id(),dto.getRoom().getRoom_type_id(), dto.getStatus()))
-                .collect(Collectors.toList()));
+        int i=0;
+        for (ReservationDTO dto : reservationBO.getAll()) {
+            ReservationTM tm = new ReservationTM(dto.getRes_id()
+                    , dto.getDate(), dto.getStudent().getStudent_id(), dto.getRoom().getRoom_type_id(), dto.getStatus());
+                tm.getEdit().setId(String.valueOf(i));
+                tm.getEdit().setOnAction(event -> editReservationOnAction(Integer.parseInt(tm.getEdit().getId())));
+                i++;
+                reservationTMS.add(tm);
+        }
         tblReservation.setItems(reservationTMS);
     }
 
@@ -83,30 +132,151 @@ public class ReservationFormController {
     }
 
     public void btnNewReservationOnAction(ActionEvent actionEvent) {
+        isUpdate=false;
         reservationContext.setVisible(true);
+        btnNewStudent.setVisible(true);
+        txtStudent.setText("");
+        txtRoom.setText("");
+        dtpDate.setValue(null);
         lblReservationID.setText("Reservation ID :"+reservationBO.getNextID());
     }
 
     public void btnCancelReservationOnAction(ActionEvent actionEvent) {
+        reservationContext.setVisible(false);
     }
 
     public void btnSaveReservationOnAction(ActionEvent actionEvent) {
-        if(roomBO.checkQTY(txtRoom.getText().split(" ")[0].split("#")[1])){
-            if(reservationBO.saveReservation(new ReservationDTO(lblReservationID.getText().split(":")[1], dtpDate.getValue()
-                    ,new StudentDTO(txtStudent.getText().split(" ")[0].split("#")[1])
-                    ,new RoomDTO(txtRoom.getText().split(" ")[0].split("#")[1])
-                    ,status.getToggles().get(0).isSelected() ? "Payed" : "Not Payed"))){
-                reservationContext.setVisible(false);
-                new Alert(Alert.AlertType.CONFIRMATION, "Reservation Added !!!").show();
-                reloadTable();
+        if (checkResTextField() & dtpDate.getValue() != null) {
+            if (!isUpdate) {
+                if (roomBO.checkQTY(txtRoom.getText().split(" ")[0].split("#")[1])) {
+                    if (reservationBO.saveReservation(new ReservationDTO(lblReservationID.getText().split(":")[1], dtpDate.getValue()
+                            , new StudentDTO(txtStudent.getText().split(" ")[0].split("#")[1])
+                            , new RoomDTO(txtRoom.getText().split(" ")[0].split("#")[1])
+                            , status.getToggles().get(0).isSelected() ? "Payed" : "Not Payed"))) {
+                        reservationContext.setVisible(false);
+                        new Alert(Alert.AlertType.CONFIRMATION, "Reservation Added !!!").show();
+                        reloadTable();
+                    } else {
+                        new Alert(Alert.AlertType.ERROR, "Reservation Cannot Success !!!").show();
+                    }
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Room Not Yet !!!").show();
+                }
             }else {
-            new Alert(Alert.AlertType.ERROR, "Reservation Cannot Success !!!").show();}
-        }else {new Alert(Alert.AlertType.ERROR, "Room Not Yet !!!").show();}
+                if (reservationBO.updateReservation(new ReservationDTO(lblReservationID.getText().split(":")[1], dtpDate.getValue()
+                        , new StudentDTO(txtStudent.getText().split(" ")[0].split("#")[1])
+                        , new RoomDTO(txtRoom.getText().split(" ")[0].split("#")[1])
+                        , status.getToggles().get(0).isSelected() ? "Payed" : "Not Payed"))) {
+                    reservationContext.setVisible(false);
+                    new Alert(Alert.AlertType.CONFIRMATION, "Reservation Updated !!!").show();
+                    reloadTable();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Reservation Cannot Updated !!!").show();
+                }
+            }
+        }else {new Alert(Alert.AlertType.ERROR, "Invalid Data !!!").show();}
     }
-
     public void btnCancelStudentOnAction(ActionEvent actionEvent) {
+        studentContext.setVisible(false);
+        reservationContext.setVisible(true);
+
     }
 
     public void btnSaveStudentOnAction(ActionEvent actionEvent) {
+        if (dtpDOB.getValue()!=null){
+            if (checkStdTextField()) {
+                    if (studentBO.saveStudent(new StudentDTO(
+                            lblStudentID.getText().split(":")[1]
+                            , txtName.getText()
+                            , txtAddress.getText()
+                            , txtContactNo.getText()
+                            , dtpDOB.getValue()
+                            , gender.getToggles().get(0).isSelected() ? "Male" : "Female"
+                    ))) {
+                        studentContext.setVisible(false);
+                        setOther();
+                        txtStudent.setText("#" + lblStudentID.getText().split(":")[1] +"   "+ txtName.getText());
+                        reservationContext.setVisible(true);
+                        new Alert(Alert.AlertType.CONFIRMATION, "Student Added !!!!!!!!!!!").show();
+                    }
+                }
+        }else {
+            new Alert(Alert.AlertType.ERROR, "Invalid DOB !!!!!!!!!!!").show();
+        }
+    }
+
+    public void chbNoPayOnAction(ActionEvent actionEvent) {
+            reservationTMS.clear();
+        if (chbNoPay.isSelected()) {
+            int i=0;
+            for (ReservationDTO dto : reservationBO.getAll()) {
+                ReservationTM tm = new ReservationTM(dto.getRes_id()
+                        , dto.getDate(), dto.getStudent().getStudent_id(), dto.getRoom().getRoom_type_id(), dto.getStatus());
+                if (tm.getStatus().equals("Not Payed")){
+                    tm.getEdit().setId(String.valueOf(i));
+                    tm.getEdit().setOnAction(event -> editReservationOnAction(Integer.parseInt(tm.getEdit().getId())));
+                    reservationTMS.add(tm);
+                    i++;
+                }
+            }
+            tblReservation.setItems(reservationTMS);
+        }else reloadTable();
+    }
+
+    private void editReservationOnAction(int i) {
+        isUpdate=true;
+        reservationContext.setVisible(true);
+        btnNewStudent.setVisible(false);
+        ReservationTM tm = reservationTMS.get(i);
+        lblReservationID.setText("Reservation ID :"+tm.getRes_id());
+        StudentDTO student = studentBO.findStudent(tm.getStudent());
+        txtStudent.setText("#"+ student.getStudent_id()+"   "+student.getName());
+        RoomDTO room = roomBO.findRoom(tm.getRoom());
+        txtRoom.setText("#"+ room.getRoom_type_id()+"   "+room.getType());
+        txtStudent.setEditable(false);
+        txtRoom.setEditable(false);
+        dtpDate.setValue(tm.getDate());
+        status.getToggles().get(tm.getStatus().equals("Payed") ? 0 : 1).setSelected(true);
+    }
+
+    public void btnNewStudentOnAction(ActionEvent actionEvent) {
+        studentContext.setVisible(true);
+        reservationContext.setVisible(false);
+        lblRoomDetails.setVisible(true);
+        lblRoomDetails.setText("");
+        txtFindRoom.setVisible(true);
+        txtFindRoom.setText("");
+        txtName.setText("");
+        txtAddress.setText("");
+        txtContactNo.setText("");
+        dtpDOB.setValue(null);
+        lblStudentID.setText("Student ID :"+studentBO.getNextID());
+    }
+    private boolean checkStdTextField(){
+        if (Regex.name.matcher(txtName.getText()).matches()) {
+            txtName.setFocusColor(Color.GREEN);
+            txtName.setUnFocusColor(Color.GREEN);
+            if (Regex.address.matcher(txtAddress.getText()).matches()) {
+                txtAddress.setFocusColor(Color.GREEN);
+                txtAddress.setUnFocusColor(Color.GREEN);
+                if (Regex.contact.matcher(txtContactNo.getText()).matches()) {
+                    txtContactNo.setFocusColor(Color.GREEN);
+                    txtContactNo.setUnFocusColor(Color.GREEN);
+                    return true;
+                }else{
+                    txtContactNo.setFocusColor(Color.RED);
+                    txtContactNo.setUnFocusColor(Color.RED);
+                    return false;
+                }
+            }else{
+                txtAddress.setFocusColor(Color.RED);
+                txtAddress.setUnFocusColor(Color.RED);
+                return false;
+            }
+        }else{
+            txtName.setFocusColor(Color.RED);
+            txtName.setUnFocusColor(Color.RED);
+            return false;
+        }
     }
 }

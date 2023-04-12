@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
@@ -105,15 +106,15 @@
                </font>
             </Label>
             <Label fx:id="lblReservationID" layoutX="28.0" layoutY="76.0" text="Reservation ID :" />
-            <JFXTextField fx:id="txtStudent" labelFloat="true" layoutX="28.0" layoutY="123.0" promptText="Student :" />
+            <JFXTextField fx:id="txtStudent" labelFloat="true" layoutX="257.0" layoutY="62.0" promptText="Student :" />
             <JFXTextField fx:id="txtRoom" labelFloat="true" layoutX="258.0" layoutY="123.0" promptText="Room :" />
-            <JFXRadioButton layoutX="225.0" layoutY="190.0" text="Payed">
+            <JFXRadioButton layoutX="295.0" layoutY="190.0" text="Payed">
                <toggleGroup>
                   <ToggleGroup fx:id="status" />
                </toggleGroup>
             </JFXRadioButton>
-            <JFXRadioButton layoutX="295.0" layoutY="190.0" text="No Payed" toggleGroup="$status" />
-            <Label layoutX="168.0" layoutY="188.0" text="Status">
+            <JFXRadioButton layoutX="365.0" layoutY="190.0" text="No Payed" toggleGroup="$status" />
+            <Label layoutX="238.0" layoutY="188.0" text="Status">
                <font>
                   <Font size="14.0" />
                </font>
@@ -128,8 +129,10 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </JFXButton>
-            <JFXDatePicker fx:id="dtpDate" editable="false" layoutX="258.0" layoutY="70.0" promptText="Date" />
+            <JFXDatePicker fx:id="dtpDate" editable="false" layoutX="27.0" layoutY="121.0" promptText="Date" />
+            <JFXButton fx:id="btnNewStudent" layoutX="401.0" layoutY="63.0" onAction="#btnNewStudentOnAction" prefHeight="25.0" prefWidth="49.0" text="+New" textFill="#00b4d8" />
          </children>
       </AnchorPane>
+      <JFXCheckBox fx:id="chbNoPay" checkedColor="#39bc7b" layoutX="846.0" layoutY="14.0" onAction="#chbNoPayOnAction" text="No Pay" unCheckedColor="#1b8cd7" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="14.0" />
    </children>
 </AnchorPane>

@@ -94,4 +94,17 @@ public class StudentDAOImpl implements StudentDAO {
             session.close();
         }
     }
+
+    @Override
+    public Student find(String s) {
+        try {
+            session = FactoryConfiguration.getInstance().getSession();
+            return session.get(Student.class, s);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            session.close();
+        }
+    }
 }

@@ -11,4 +11,8 @@ public interface StudentBO extends SuperBo {
     List<StudentDTO> getAll();
 
     String getNextID();
+
+    boolean updateStudent(StudentDTO studentDTO);
+
+    StudentDTO findStudent(String s);
 }

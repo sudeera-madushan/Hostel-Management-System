@@ -42,4 +42,9 @@ public class RoomBOImpl implements RoomBO {
     public boolean checkQTY(String id) {
         return roomDAO.find(id).getQty()>0;
     }
+
+    @Override
+    public boolean updateRoom(RoomDTO roomDTO) {
+        return roomDAO.update(converter.fromRoom(roomDTO));
+    }
 }

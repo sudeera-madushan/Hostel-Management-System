@@ -12,4 +12,6 @@ public interface ReservationBO extends SuperBo {
     boolean saveReservation(ReservationDTO dto);
 
     List<ReservationDTO> getAll();
+
+    boolean updateReservation(ReservationDTO dto);
 }
