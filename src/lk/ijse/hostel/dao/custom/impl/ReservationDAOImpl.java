@@ -127,4 +127,33 @@ public class ReservationDAOImpl implements ReservationDAO {
             session.close();
         }
     }
+    @Override
+    public Long getCount() {
+        try {
+            session = FactoryConfiguration.getInstance().getSession();
+            Query query = session.createQuery("select count(r) from Reservation r");
+            List<Long> list = query.list();
+            return list.get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return new Long(0);
+    }
+
+    @Override
+    public Long getNoPayCount() {
+        try {
+            session = FactoryConfiguration.getInstance().getSession();
+            Query query = session.createQuery("select count(r) from Reservation r where r.status='Not Payed'");
+            List<Long> list = query.list();
+            return list.get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return new Long(0);
+    }
 }

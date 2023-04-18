@@ -9,11 +9,13 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
+
 
 <AnchorPane fx:id="rootContext" prefHeight="570.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostel.controller.dashboard.DashboardFromController">
    <children>
@@ -71,6 +73,21 @@
                                     <Image url="@../../assest/images/studentt.png" />
                                  </image>
                               </ImageView>
+                              <Label layoutX="107.0" layoutY="16.0" text="Students" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblStudentCount" layoutX="127.0" layoutY="36.0" prefHeight="35.0" prefWidth="217.0" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri Bold" size="30.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="110.0" layoutY="76.0" text="Student" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri Bold" size="16.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </Pane>
                         <Pane layoutX="10.0" layoutY="10.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="316.0" style="-fx-background-color: linear-gradient(to left, #2a84be,#8d70ee);" HBox.hgrow="ALWAYS">
@@ -86,6 +103,16 @@
                                     <Image url="@../../assest/images/roomm.png" />
                                  </image>
                               </ImageView>
+                              <Label layoutX="113.0" layoutY="14.0" text="Rooms" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblRoomCount" layoutX="129.0" layoutY="41.0" prefHeight="35.0" prefWidth="217.0" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri Bold" size="30.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </Pane>
                      </children>
@@ -105,6 +132,16 @@
                                     <Image url="@../../assest/images/boking.png" />
                                  </image>
                               </ImageView>
+                              <Label layoutX="114.0" layoutY="14.0" text="Reservations" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblReservationCount" layoutX="130.0" layoutY="41.0" prefHeight="35.0" prefWidth="217.0" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri Bold" size="30.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </Pane>
                         <Pane layoutX="10.0" layoutY="10.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="316.0" style="-fx-background-color: linear-gradient(to left, #8363f9,#ec6fea);" HBox.hgrow="ALWAYS">
@@ -120,6 +157,16 @@
                                     <Image url="@../../assest/images/nopay.png" />
                                  </image>
                               </ImageView>
+                              <Label layoutX="117.0" layoutY="13.0" text="Pending Payments" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblPendingPayment" layoutX="129.0" layoutY="41.0" prefHeight="35.0" prefWidth="217.0" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri Bold" size="30.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </Pane>
                      </children>
@@ -134,7 +181,8 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </BarChart>
-         </children></AnchorPane>
+         </children>
+      </AnchorPane>
       <VBox layoutX="21.0" layoutY="90.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #f8f8f8; -fx-background-radius: 5 5 5 5;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="70.0">
          <effect>
             <DropShadow height="5.0" radius="2.0" width="5.0" />
@@ -216,5 +264,6 @@
             </AnchorPane>
          </children>
       </VBox>
+      <FlowPane prefHeight="200.0" prefWidth="200.0" />
    </children>
 </AnchorPane>

@@ -44,4 +44,9 @@ public class StudentBOImpl implements StudentBO {
     public StudentDTO findStudent(String s) {
         return converter.toStudent(studentDAO.find(s));
     }
+
+    @Override
+    public Long getStudentCount() {
+        return studentDAO.getCount();
+    }
 }

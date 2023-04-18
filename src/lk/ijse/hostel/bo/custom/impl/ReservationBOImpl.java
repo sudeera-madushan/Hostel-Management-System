@@ -47,4 +47,14 @@ public class ReservationBOImpl implements ReservationBO {
     public ReservationDTO findReservation(String id) {
         return converter.toReservation(reservationDAO.find(id));
     }
+
+    @Override
+    public Long getReservationCount() {
+        return reservationDAO.getCount();
+    }
+
+    @Override
+    public Long getReservationCountPending() {
+        return reservationDAO.getNoPayCount();
+    }
 }

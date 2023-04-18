@@ -2,15 +2,41 @@ package lk.ijse.hostel.controller.dashboard;
 
 import javafx.application.Platform;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.hostel.bo.BOFactory;
+import lk.ijse.hostel.bo.custom.ReservationBO;
+import lk.ijse.hostel.bo.custom.RoomBO;
+import lk.ijse.hostel.bo.custom.StudentBO;
 import lk.ijse.hostel.controller.util.UiNavigateUtil;
 
 public class DashboardFromController {
     public AnchorPane paneProfile, paneStudent, paneRoom, paneHome,paneReservation;
     public AnchorPane rootContext;
     public AnchorPane workingContext;
+    public Label lblStudentCount;
+    public Label lblRoomCount;
+    public Label lblReservationCount;
+    public Label lblPendingPayment;
+    private StudentBO studentBO;
+    private RoomBO roomBO;
+    private ReservationBO reservationBO;
+
+    public void initialize(){
+        studentBO= (StudentBO) BOFactory.getBoFactory().getBo(BOFactory.BOType.STUDENT);
+        roomBO= (RoomBO) BOFactory.getBoFactory().getBo(BOFactory.BOType.ROOM);
+        reservationBO= (ReservationBO) BOFactory.getBoFactory().getBo(BOFactory.BOType.RESERVATION);
+        setDataRowCount();
+    }
+
+    private void setDataRowCount() {
+        lblStudentCount.setText(String.valueOf(studentBO.getStudentCount()));
+        lblRoomCount.setText(String.valueOf(roomBO.getRoomCount()));
+        lblReservationCount.setText(String.valueOf(reservationBO.getReservationCount()));
+        lblPendingPayment.setText(String.valueOf(reservationBO.getReservationCountPending()));
+    }
 
     public void lblOpenHomeOnAction(MouseEvent mouseEvent) {
         paneProfile.setStyle("-fx-background-color: none");

@@ -5,4 +5,6 @@ import lk.ijse.hostel.entity.Student;
 
 public interface StudentDAO extends CrudDAO<Student,String> {
     Student find(String s);
+
+    Long getCount();
 }

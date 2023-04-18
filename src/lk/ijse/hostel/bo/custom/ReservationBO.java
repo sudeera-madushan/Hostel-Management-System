@@ -16,4 +16,8 @@ public interface ReservationBO extends SuperBo {
     boolean updateReservation(ReservationDTO dto);
 
     ReservationDTO findReservation(String id);
+
+    Long getReservationCount();
+
+    Long getReservationCountPending();
 }

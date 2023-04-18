@@ -47,4 +47,9 @@ public class RoomBOImpl implements RoomBO {
     public boolean updateRoom(RoomDTO roomDTO) {
         return roomDAO.update(converter.fromRoom(roomDTO));
     }
+
+    @Override
+    public Long getRoomCount() {
+        return roomDAO.getCount();
+    }
 }

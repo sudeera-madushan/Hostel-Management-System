@@ -5,4 +5,6 @@ import lk.ijse.hostel.entity.Room;
 
 public interface RoomDAO extends CrudDAO<Room,String> {
     Room find(String s);
+
+    Long getCount();
 }

@@ -15,4 +15,6 @@ public interface StudentBO extends SuperBo {
     boolean updateStudent(StudentDTO studentDTO);
 
     StudentDTO findStudent(String s);
+
+    Long getStudentCount();
 }

@@ -7,4 +7,8 @@ import java.util.List;
 
 public interface ReservationDAO extends CrudDAO<Reservation,String> {
     Reservation find(String id);
+
+    Long getCount();
+
+    Long getNoPayCount();
 }

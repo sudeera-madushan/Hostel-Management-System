@@ -2,7 +2,6 @@ package lk.ijse.hostel.dao.custom.impl;
 
 import lk.ijse.hostel.dao.custom.RoomDAO;
 import lk.ijse.hostel.entity.Room;
-import lk.ijse.hostel.entity.Student;
 import lk.ijse.hostel.util.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -108,5 +107,19 @@ public class RoomDAOImpl implements RoomDAO {
         } finally {
             session.close();
         }
+    }
+    @Override
+    public Long getCount() {
+        try {
+            session = FactoryConfiguration.getInstance().getSession();
+            Query query = session.createQuery("select sum(r.qty) from Room r");
+            List<Long> list = query.list();
+            return list.get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return new Long(0);
     }
 }
