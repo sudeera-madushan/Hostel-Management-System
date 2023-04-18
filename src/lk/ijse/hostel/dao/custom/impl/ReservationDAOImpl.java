@@ -1,6 +1,7 @@
 package lk.ijse.hostel.dao.custom.impl;
 
 import lk.ijse.hostel.dao.custom.ReservationDAO;
+import lk.ijse.hostel.dao.util.DAOFactory;
 import lk.ijse.hostel.entity.Reservation;
 import lk.ijse.hostel.entity.Room;
 import lk.ijse.hostel.util.FactoryConfiguration;
@@ -12,15 +13,33 @@ import java.util.List;
 public class ReservationDAOImpl implements ReservationDAO {
     private Session session;
     private Transaction transaction;
+    private RoomDAOImpl roomDAO;
+
+    public ReservationDAOImpl() {
+        roomDAO= (RoomDAOImpl) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOType.ROOM);
+    }
 
     @Override
     public boolean save(Reservation entity){
         try {
             session = FactoryConfiguration.getInstance().getSession();
+            Session sessiont = FactoryConfiguration.getInstance().getSession();
             transaction = session.beginTransaction();
+            Transaction transactiont = sessiont.beginTransaction();
             session.save(entity);
-            transaction.commit();
-            return true;
+            Room room = roomDAO.find(entity.getRoom().getRoom_type_id());
+            room.setQty(room.getQty()-1);
+            if (roomDAO.update(room)){
+                transaction.commit();
+                transactiont.commit();
+                sessiont.close();
+                return true;
+            }else {
+                transaction.rollback();
+                transactiont.rollback();
+                sessiont.close();
+                return false;
+            }
         }catch (Exception e){
             e.printStackTrace();
             transaction.rollback();
@@ -88,6 +107,19 @@ public class ReservationDAOImpl implements ReservationDAO {
             Query query = session.createQuery("from Reservation order by res_id desc ");
             rooms=query.list();
             return rooms.get(0).getRes_id();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public Reservation find(String id) {
+        try {
+            session = FactoryConfiguration.getInstance().getSession();
+            return session.get(Reservation.class, id);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

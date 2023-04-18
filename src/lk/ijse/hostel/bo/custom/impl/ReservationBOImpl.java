@@ -29,15 +29,8 @@ public class ReservationBOImpl implements ReservationBO {
 
     @Override
     public boolean saveReservation(ReservationDTO dto) {
-        if (reservationDAO.save(converter.fromReservation(dto))){
-            Room room = roomDAO.find(dto.getRoom().getRoom_type_id());
-            room.setQty(room.getQty()-1);
-            if (roomDAO.update(room)){
-                return true;
-            }
-            return false;
-        }
-        return false;
+
+        return reservationDAO.save(converter.fromReservation(dto));
     }
 
     @Override
@@ -48,5 +41,10 @@ public class ReservationBOImpl implements ReservationBO {
     @Override
     public boolean updateReservation(ReservationDTO dto) {
         return reservationDAO.update(converter.fromReservation(dto));
+    }
+
+    @Override
+    public ReservationDTO findReservation(String id) {
+        return converter.toReservation(reservationDAO.find(id));
     }
 }

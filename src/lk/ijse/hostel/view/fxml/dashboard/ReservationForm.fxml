@@ -119,7 +119,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <JFXButton layoutX="459.0" layoutY="278.0" onAction="#btnSaveReservationOnAction" style="-fx-background-color: #24cc48;" text="Save" textFill="WHITE">
+            <JFXButton fx:id="btnSaveReservation" layoutX="459.0" layoutY="278.0" onAction="#btnSaveReservationOnAction" style="-fx-background-color: #24cc48;" text="Save" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -131,7 +131,7 @@
             </JFXButton>
             <JFXDatePicker fx:id="dtpDate" editable="false" layoutX="27.0" layoutY="121.0" promptText="Date" />
             <JFXButton fx:id="btnNewStudent" layoutX="401.0" layoutY="63.0" onAction="#btnNewStudentOnAction" prefHeight="25.0" prefWidth="49.0" text="+New" textFill="#00b4d8" />
-            <JFXButton fx:id="btnCloseReservation" layoutX="349.0" layoutY="278.0" onAction="#btnCloseReservationOnAction" style="-fx-background-color: #fe6d73;" text="Close" textFill="WHITE">
+            <JFXButton fx:id="btnCloseReservation" layoutX="459.0" layoutY="278.0" onAction="#btnCloseReservationOnAction" style="-fx-background-color: #fe6d73;" text="Close" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

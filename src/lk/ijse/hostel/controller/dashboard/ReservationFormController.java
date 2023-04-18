@@ -60,6 +60,7 @@ public class ReservationFormController {
     public JFXButton btnNewStudent;
     public JFXButton btnNewRoom;
     public JFXButton btnCloseReservation;
+    public JFXButton btnSaveReservation;
     private ReservationBO reservationBO;
     private StudentBO studentBO;
     private RoomBO roomBO;
@@ -129,17 +130,12 @@ public class ReservationFormController {
         for (ReservationDTO dto : dtos) {
             ReservationTM tm = new ReservationTM(dto.getRes_id()
                     , dto.getDate(), dto.getStudent().getStudent_id(), dto.getRoom().getRoom_type_id(), dto.getStatus());
+                if (!tm.getStatus().equals("Complete")) {
+                    reservationTMS.add(tm);
                 tm.getEdit().setId(String.valueOf(i));
-
-            long days = ChronoUnit.DAYS.between(tm.getDate(), currentDate);
-
-                if (days>365){
-                    tm.getEdit().setStyle("-fx-background-color: red");
-                }
-
-                tm.getEdit().setOnAction(event -> editReservationOnAction(Integer.parseInt(tm.getEdit().getId())));
                 i++;
-                reservationTMS.add(tm);
+                }
+                tm.getEdit().setOnAction(event -> editReservationOnAction(Integer.parseInt(tm.getEdit().getId())));
         }
         tblReservation.setRowFactory(tv -> new TableRow<ReservationTM>() {
             @Override
@@ -166,6 +162,8 @@ public class ReservationFormController {
         isUpdate=false;
         reservationContext.setVisible(true);
         btnNewStudent.setVisible(true);
+        btnCloseReservation.setVisible(false);
+        btnSaveReservation.setVisible(true);
         txtStudent.setText("");
         txtRoom.setText("");
         dtpDate.setValue(null);
@@ -284,6 +282,17 @@ public class ReservationFormController {
         txtRoom.setEditable(false);
         dtpDate.setValue(tm.getDate());
         status.getToggles().get(tm.getStatus().equals("Payed") ? 0 : 1).setSelected(true);
+        DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDate currentDate=LocalDate.parse(new SimpleDateFormat("yyyy/MM/dd").format(Calendar.getInstance().getTime()),formatter);
+        System.out.println(currentDate+"---O"+tm.getDate());
+        long days = ChronoUnit.DAYS.between(tm.getDate(), currentDate);
+        if (days>365){
+            btnCloseReservation.setVisible(true);
+            btnSaveReservation.setVisible(false);
+        }else {
+            btnCloseReservation.setVisible(false);
+            btnSaveReservation.setVisible(true);
+        }
     }
 
     public void btnNewStudentOnAction(ActionEvent actionEvent) {
@@ -328,8 +337,16 @@ public class ReservationFormController {
     }
 
     public void btnCloseReservationOnAction(ActionEvent actionEvent) {
-        if (studentBO.updateStudent(studentBO.findStudent(txtStudent.getText().split(" ")[0].split("#")[1]))){
-
-        }
+        ReservationDTO reservation = reservationBO.findReservation(lblReservationID.getText().split(":")[1]);
+        RoomDTO room = roomBO.findRoom(reservation.getRoom().getRoom_type_id());
+        room.setQty(room.getQty()+1);
+        reservation.setStatus("Complete");
+        if (status.getToggles().get(0).isSelected()) {
+            if (reservationBO.updateReservation(reservation) & roomBO.updateRoom(room)) {
+                reservationContext.setVisible(false);
+                reloadTable();
+                new Alert(Alert.AlertType.CONFIRMATION, "Reservation Closed !!!!!!!!!!!").show();
+            } else new Alert(Alert.AlertType.ERROR, "Reservation Not Closed !!!!!!!!!!!").show();
+        }else new Alert(Alert.AlertType.ERROR, "Reservation Can't Closed !!! \n Please Complete You Payment").show();
     }
 }
