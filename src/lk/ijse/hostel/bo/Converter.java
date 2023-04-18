@@ -35,8 +35,9 @@ public class Converter {
     }
 
     public Reservation fromReservation(ReservationDTO dto) {
+        System.out.println(new Date(dto.getDate().getYear(),dto.getDate().getMonthValue(),dto.getDate().getDayOfMonth()));
         return new Reservation(dto.getRes_id()
-                ,new Date(dto.getDate().getYear(),dto.getDate().getMonthValue(),dto.getDate().getDayOfMonth())
+                ,new Date(dto.getDate().getYear()-1900,dto.getDate().getMonthValue()-1,dto.getDate().getDayOfMonth())
                 ,new Student(dto.getStudent().getStudent_id())
                 ,new Room(dto.getRoom().getRoom_type_id())
                 , dto.getStatus());

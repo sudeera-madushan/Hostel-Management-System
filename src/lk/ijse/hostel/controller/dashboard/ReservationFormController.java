@@ -22,6 +22,14 @@ import lk.ijse.hostel.dto.tm.ReservationTM;
 import lk.ijse.hostel.util.Regex;
 import org.controlsfx.control.textfield.TextFields;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class ReservationFormController {
@@ -51,6 +59,7 @@ public class ReservationFormController {
     public JFXCheckBox chbNoPay;
     public JFXButton btnNewStudent;
     public JFXButton btnNewRoom;
+    public JFXButton btnCloseReservation;
     private ReservationBO reservationBO;
     private StudentBO studentBO;
     private RoomBO roomBO;
@@ -112,15 +121,37 @@ public class ReservationFormController {
 
     private void reloadTable() {
         reservationTMS.clear();
+        List<ReservationDTO> dtos = reservationBO.getAll();
+        DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDate currentDate=LocalDate.parse(new SimpleDateFormat("yyyy/MM/dd").format(Calendar.getInstance().getTime()),formatter);
+        Collections.reverse(dtos);
         int i=0;
-        for (ReservationDTO dto : reservationBO.getAll()) {
+        for (ReservationDTO dto : dtos) {
             ReservationTM tm = new ReservationTM(dto.getRes_id()
                     , dto.getDate(), dto.getStudent().getStudent_id(), dto.getRoom().getRoom_type_id(), dto.getStatus());
                 tm.getEdit().setId(String.valueOf(i));
+
+            long days = ChronoUnit.DAYS.between(tm.getDate(), currentDate);
+
+                if (days>365){
+                    tm.getEdit().setStyle("-fx-background-color: red");
+                }
+
                 tm.getEdit().setOnAction(event -> editReservationOnAction(Integer.parseInt(tm.getEdit().getId())));
                 i++;
                 reservationTMS.add(tm);
         }
+        tblReservation.setRowFactory(tv -> new TableRow<ReservationTM>() {
+            @Override
+            protected void updateItem(ReservationTM item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (item == null || ChronoUnit.DAYS.between(item.getDate(), currentDate)<365)
+                    setStyle("");
+                else
+                    setStyle("-fx-background-color: #61a5c2;");
+            }
+        });
         tblReservation.setItems(reservationTMS);
     }
 
@@ -146,22 +177,25 @@ public class ReservationFormController {
     }
 
     public void btnSaveReservationOnAction(ActionEvent actionEvent) {
+
         if (checkResTextField() & dtpDate.getValue() != null) {
             if (!isUpdate) {
-                if (roomBO.checkQTY(txtRoom.getText().split(" ")[0].split("#")[1])) {
-                    if (reservationBO.saveReservation(new ReservationDTO(lblReservationID.getText().split(":")[1], dtpDate.getValue()
-                            , new StudentDTO(txtStudent.getText().split(" ")[0].split("#")[1])
-                            , new RoomDTO(txtRoom.getText().split(" ")[0].split("#")[1])
-                            , status.getToggles().get(0).isSelected() ? "Payed" : "Not Payed"))) {
-                        reservationContext.setVisible(false);
-                        new Alert(Alert.AlertType.CONFIRMATION, "Reservation Added !!!").show();
-                        reloadTable();
+                if (checkRecentStudent()){
+                    if (roomBO.checkQTY(txtRoom.getText().split(" ")[0].split("#")[1])) {
+                        if (reservationBO.saveReservation(new ReservationDTO(lblReservationID.getText().split(":")[1], dtpDate.getValue()
+                                , new StudentDTO(txtStudent.getText().split(" ")[0].split("#")[1])
+                                , new RoomDTO(txtRoom.getText().split(" ")[0].split("#")[1])
+                                , status.getToggles().get(0).isSelected() ? "Payed" : "Not Payed"))) {
+                            reservationContext.setVisible(false);
+                            new Alert(Alert.AlertType.CONFIRMATION, "Reservation Added !!!").show();
+                            reloadTable();
+                        } else {
+                            new Alert(Alert.AlertType.ERROR, "Reservation Cannot Success !!!").show();
+                        }
                     } else {
-                        new Alert(Alert.AlertType.ERROR, "Reservation Cannot Success !!!").show();
+                        new Alert(Alert.AlertType.ERROR, "Room Not Yet !!!").show();
                     }
-                } else {
-                    new Alert(Alert.AlertType.ERROR, "Room Not Yet !!!").show();
-                }
+            }else new Alert(Alert.AlertType.ERROR, "Student Already Reserved !!!").show();
             }else {
                 if (reservationBO.updateReservation(new ReservationDTO(lblReservationID.getText().split(":")[1], dtpDate.getValue()
                         , new StudentDTO(txtStudent.getText().split(" ")[0].split("#")[1])
@@ -176,6 +210,19 @@ public class ReservationFormController {
             }
         }else {new Alert(Alert.AlertType.ERROR, "Invalid Data !!!").show();}
     }
+
+    private boolean checkRecentStudent() {
+        String id = txtStudent.getText().split(" ")[0].split("#")[1];
+        for (ReservationTM tm : reservationTMS) {
+            if (id.equals(tm.getStudent())) {
+                if (!tm.getStatus().equals("Complete")){
+                return false;
+                }
+            }
+        }
+        return true;
+    }
+
     public void btnCancelStudentOnAction(ActionEvent actionEvent) {
         studentContext.setVisible(false);
         reservationContext.setVisible(true);
@@ -277,6 +324,12 @@ public class ReservationFormController {
             txtName.setFocusColor(Color.RED);
             txtName.setUnFocusColor(Color.RED);
             return false;
+        }
+    }
+
+    public void btnCloseReservationOnAction(ActionEvent actionEvent) {
+        if (studentBO.updateStudent(studentBO.findStudent(txtStudent.getText().split(" ")[0].split("#")[1]))){
+
         }
     }
 }
