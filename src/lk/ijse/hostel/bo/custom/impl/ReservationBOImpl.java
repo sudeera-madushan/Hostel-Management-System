@@ -6,7 +6,6 @@ import lk.ijse.hostel.dao.custom.ReservationDAO;
 import lk.ijse.hostel.dao.custom.RoomDAO;
 import lk.ijse.hostel.dao.util.DAOFactory;
 import lk.ijse.hostel.dto.ReservationDTO;
-import lk.ijse.hostel.entity.Room;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -56,5 +55,9 @@ public class ReservationBOImpl implements ReservationBO {
     @Override
     public Long getReservationCountPending() {
         return reservationDAO.getNoPayCount();
+    }
+    @Override
+    public Long getReservationCountByDate(String s) {
+        return reservationDAO.findCountByDate(s);
     }
 }

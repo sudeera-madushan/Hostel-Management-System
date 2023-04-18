@@ -20,4 +20,6 @@ public interface ReservationBO extends SuperBo {
     Long getReservationCount();
 
     Long getReservationCountPending();
+
+    Long getReservationCountByDate(String s);
 }

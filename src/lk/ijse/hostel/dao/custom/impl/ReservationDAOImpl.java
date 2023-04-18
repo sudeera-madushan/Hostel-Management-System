@@ -156,4 +156,20 @@ public class ReservationDAOImpl implements ReservationDAO {
         }
         return new Long(0);
     }
+    @Override
+    public Long findCountByDate(String s) {
+        s="%"+s+"%";
+        try {
+            session = FactoryConfiguration.getInstance().getSession();
+            Query query = session.createQuery("select count(r.date) from Reservation r where r.date like '"+s+"'");
+            List<Long> list = query.list();
+            System.out.println(list.get(0));
+            return list.get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return new Long(0);
+    }
 }

@@ -5,6 +5,7 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -18,15 +19,15 @@
             <Rectangle2D />
          </viewport>
          <image>
-            <Image url="@../../assest/images/tablet.jpg" />
+            <Image url="@../../assest/images/ssssssa.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="83.0" layoutY="90.0" prefHeight="76.0" prefWidth="274.0" text="Welcome" textFill="#279eee" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="408.0">
+      <Label layoutX="83.0" layoutY="90.0" prefHeight="76.0" prefWidth="274.0" text="Welcome " textFill="#9381ff" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="408.0">
          <font>
-            <Font name="Corbel Bold" size="61.0" />
+            <Font name="Corbel Bold Italic" size="61.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="426.0" layoutY="48.0" prefHeight="404.0" prefWidth="325.0" style="-fx-border-color: #279eee;" AnchorPane.bottomAnchor="54.0" AnchorPane.leftAnchor="426.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="48.0">
+      <AnchorPane layoutX="426.0" layoutY="48.0" prefHeight="404.0" prefWidth="325.0" style="-fx-background-color: #89c2d9;" AnchorPane.bottomAnchor="54.0" AnchorPane.leftAnchor="426.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="48.0">
          <children>
             <JFXPasswordField fx:id="pxtPassword" focusColor="#5993ff" labelFloat="true" layoutX="23.0" layoutY="188.0" prefHeight="44.0" prefWidth="280.0" promptText="Password">
                <font>
@@ -74,12 +75,27 @@
                </font>
             </JFXButton>
          </children>
+         <effect>
+            <DropShadow />
+         </effect>
       </AnchorPane>
-      <Label layoutX="51.0" layoutY="166.0" prefHeight="33.0" prefWidth="332.0" text="Hostel Management System" textFill="#c4c789">
+      <Pane layoutX="6.0" layoutY="8.0" prefHeight="33.0" prefWidth="765.0" style="-fx-background-color: #a4acb1;" AnchorPane.bottomAnchor="473.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="256.0" layoutY="3.0" prefHeight="27.0" prefWidth="274.0" text="Hostel Management System">
+               <font>
+                  <Font name="Corbel Italic" size="23.0" />
+               </font>
+            </Label>
+         </children></Pane>
+      <Label layoutX="174.0" layoutY="155.0" prefHeight="76.0" prefWidth="86.0" text="To" textFill="#9381ff">
          <font>
-            <Font name="Corbel" size="28.0" />
+            <Font name="Corbel Bold Italic" size="61.0" />
          </font>
       </Label>
-      <Pane layoutX="6.0" layoutY="8.0" prefHeight="33.0" prefWidth="765.0" style="-fx-background-color: #a4acb1;" AnchorPane.bottomAnchor="473.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Label layoutX="121.0" layoutY="221.0" prefHeight="76.0" prefWidth="178.0" text="Hostel" textFill="#9381ff">
+         <font>
+            <Font name="Corbel Bold Italic" size="61.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

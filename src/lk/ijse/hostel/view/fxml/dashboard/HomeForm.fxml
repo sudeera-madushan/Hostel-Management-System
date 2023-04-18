@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="workingContext" prefHeight="484.0" prefWidth="872.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostel.controller.dashboard.HomeFormController" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" >
+   <effect>
+      <DropShadow height="1.0" radius="0.0" width="0.0" />
+   </effect>
+   <children>
+      <VBox layoutX="101.0" layoutY="47.0" prefHeight="311.0" prefWidth="872.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="156.0" prefWidth="872.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Pane prefHeight="123.0" prefWidth="327.0" style="-fx-background-color: linear-gradient(to left, #fd67ad,#ff875e)linear-gradient(to left, #fd67ad,#ff875e);" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
+                     </HBox.margin>
+                     <effect>
+                        <DropShadow color="#ffffff7e" />
+                     </effect>
+                     <children>
+                        <ImageView fitHeight="117.0" fitWidth="198.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../assest/images/studentt.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="107.0" layoutY="16.0" text="Students" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblStudentCount" layoutX="127.0" layoutY="36.0" prefHeight="35.0" prefWidth="217.0" text="0" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri Bold" size="30.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="110.0" layoutY="76.0" text="Student" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri Bold" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="10.0" layoutY="10.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="316.0" style="-fx-background-color: linear-gradient(to left, #2a84be,#8d70ee);" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
+                     </HBox.margin>
+                     <effect>
+                        <DropShadow color="#ffffff7e" />
+                     </effect>
+                     <children>
+                        <ImageView fitHeight="117.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../assest/images/roomm.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="113.0" layoutY="14.0" text="Rooms" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblRoomCount" layoutX="129.0" layoutY="32.0" prefHeight="35.0" prefWidth="217.0" text="0" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri Bold" size="30.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblAvailableRooms" layoutX="115.0" layoutY="66.0" text="Available : 0" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblReservedRooms" layoutX="115.0" layoutY="86.0" text="Reserved : 0" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri Bold" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="10.0" prefHeight="156.0" prefWidth="872.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Pane prefHeight="123.0" prefWidth="327.0" style="-fx-background-color: linear-gradient(to left, #109bd3,#3ad1c0)linear-gradient(to left, #109bd3,#3ad1c0);" styleClass="backgrountColor" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
+                     </HBox.margin>
+                     <effect>
+                        <DropShadow color="#ffffff7e" />
+                     </effect>
+                     <children>
+                        <ImageView fitHeight="117.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../assest/images/boking.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="114.0" layoutY="14.0" text="Reservations" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblReservationCount" layoutX="130.0" layoutY="41.0" prefHeight="35.0" prefWidth="217.0" text="0" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri Bold" size="30.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="10.0" layoutY="10.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="316.0" style="-fx-background-color: linear-gradient(to left, #8363f9,#ec6fea);" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
+                     </HBox.margin>
+                     <effect>
+                        <DropShadow color="#ffffff7e" />
+                     </effect>
+                     <children>
+                        <ImageView fitHeight="117.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../assest/images/nopay.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="117.0" layoutY="13.0" text="Pending Payments" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblPendingPayment" layoutX="129.0" layoutY="41.0" prefHeight="35.0" prefWidth="217.0" text="0" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri Bold" size="30.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <BarChart fx:id="barChart" layoutX="36.0" layoutY="388.0" prefHeight="186.0" prefWidth="501.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="298.0">
+         <xAxis>
+            <CategoryAxis fx:id="cAxis" endMargin="0.0" side="BOTTOM" startMargin="0.0" tickLabelGap="1.0" tickLength="0.0" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis fx:id="yAxis" side="LEFT" tickLength="5.0" upperBound="20.0" />
+         </yAxis>
+      </BarChart>
+   </children>
+</AnchorPane>

@@ -112,6 +112,7 @@ public class StudentFormController {
             StudentTM tm = new StudentTM(dto.getStudent_id()
                     , dto.getName(), dto.getAddress(), dto.getContact_no(), dto.getDob(), dto.getGender());
             tm.getEdit().setId(String.valueOf(i));
+            tm.getEdit().setStyle("-fx-background-color: #60d394");
             tm.getEdit().setOnAction(event -> editButtonOnAction(Integer.parseInt(tm.getEdit().getId())));
             studentTMS.add(tm);
             i++;

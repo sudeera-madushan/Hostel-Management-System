@@ -133,6 +133,7 @@ public class ReservationFormController {
                 if (!tm.getStatus().equals("Complete")) {
                     reservationTMS.add(tm);
                 tm.getEdit().setId(String.valueOf(i));
+                tm.getEdit().setStyle("-fx-background-color: #7bf1a8");
                 i++;
                 }
                 tm.getEdit().setOnAction(event -> editReservationOnAction(Integer.parseInt(tm.getEdit().getId())));
@@ -145,7 +146,7 @@ public class ReservationFormController {
                 if (item == null || ChronoUnit.DAYS.between(item.getDate(), currentDate)<365)
                     setStyle("");
                 else
-                    setStyle("-fx-background-color: #61a5c2;");
+                    setStyle("-fx-background-color: #77a6b6;");
             }
         });
         tblReservation.setItems(reservationTMS);
@@ -168,6 +169,8 @@ public class ReservationFormController {
         txtRoom.setText("");
         dtpDate.setValue(null);
         lblReservationID.setText("Reservation ID :"+reservationBO.getNextID());
+        txtStudent.setEditable(true);
+        txtRoom.setEditable(true);
     }
 
     public void btnCancelReservationOnAction(ActionEvent actionEvent) {

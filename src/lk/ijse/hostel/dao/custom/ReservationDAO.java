@@ -11,4 +11,6 @@ public interface ReservationDAO extends CrudDAO<Reservation,String> {
     Long getCount();
 
     Long getNoPayCount();
+
+    Long findCountByDate(String s);
 }

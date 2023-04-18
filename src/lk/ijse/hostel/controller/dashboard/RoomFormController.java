@@ -110,6 +110,7 @@ public class RoomFormController {
                     roomDTO.getRoom_type_id(), roomDTO.getType(), roomDTO.getKey_money().toString(), roomDTO.getQty());
             roomTM.getEdit().setId(String.valueOf(i));
             roomTM.getEdit().setOnAction(event -> editRoomOnAction(Integer.parseInt(roomTM.getEdit().getId())));
+            roomTM.getEdit().setStyle("-fx-background-color: #60d394");
             i++;
             roomTMS.add(roomTM);
         }
