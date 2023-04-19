@@ -25,7 +25,7 @@ public class UserBOImpl implements UserBO {
 
     @Override
     public List<UserDTO> getAll() {
-        return userDAO.getAll().stream().map(dto -> converter.toUser(dto)).collect(Collectors.toList());
+        return userDAO.getAll().stream().map(entity -> converter.toUser(entity)).collect(Collectors.toList());
     }
 
     @Override
