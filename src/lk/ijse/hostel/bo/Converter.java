@@ -3,9 +3,11 @@ package lk.ijse.hostel.bo;
 import lk.ijse.hostel.dto.ReservationDTO;
 import lk.ijse.hostel.dto.RoomDTO;
 import lk.ijse.hostel.dto.StudentDTO;
+import lk.ijse.hostel.dto.UserDTO;
 import lk.ijse.hostel.entity.Reservation;
 import lk.ijse.hostel.entity.Room;
 import lk.ijse.hostel.entity.Student;
+import lk.ijse.hostel.entity.User;
 import sun.util.resources.LocaleData;
 
 import java.sql.Date;
@@ -47,5 +49,13 @@ public class Converter {
         return new ReservationDTO(entity.getRes_id(), entity.getDate().toLocalDate(),
                 new StudentDTO(entity.getStudent().getStudent_id()),new RoomDTO(entity.getRoom().getRoom_type_id()),
                 entity.getStatus());
+    }
+
+    public User fromUser(UserDTO dto) {
+        return new User(dto.getId(), dto.getUser_name(), dto.getPassword());
+    }
+
+    public UserDTO toUser(User entity) {
+        return new UserDTO(entity.getId(),entity.getUser_name(), entity.getPassword());
     }
 }

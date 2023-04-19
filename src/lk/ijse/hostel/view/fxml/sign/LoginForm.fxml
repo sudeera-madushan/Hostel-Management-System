@@ -44,7 +44,7 @@
                   <Font size="20.0" />
                </font>
             </JFXButton>
-            <Label layoutX="114.0" layoutY="48.0" prefHeight="36.0" prefWidth="102.0" text="Sing in" textFill="#6e79da">
+            <Label layoutX="114.0" layoutY="48.0" prefHeight="36.0" prefWidth="102.0" text="Sign in" textFill="#6e79da">
                <font>
                   <Font name="Constantia Bold" size="29.0" />
                </font>

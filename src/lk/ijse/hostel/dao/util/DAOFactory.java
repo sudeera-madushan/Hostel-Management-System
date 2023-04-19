@@ -3,6 +3,7 @@ package lk.ijse.hostel.dao.util;
 import lk.ijse.hostel.dao.custom.impl.ReservationDAOImpl;
 import lk.ijse.hostel.dao.custom.impl.RoomDAOImpl;
 import lk.ijse.hostel.dao.custom.impl.StudentDAOImpl;
+import lk.ijse.hostel.dao.custom.impl.UserDAOImpl;
 
 public class DAOFactory {
     private static DAOFactory daoFactory;
@@ -27,6 +28,8 @@ public class DAOFactory {
                 return new RoomDAOImpl();
             case RESERVATION:
                 return new ReservationDAOImpl();
+            case USER:
+                return new UserDAOImpl();
             default:
                 return null;
         }
@@ -34,6 +37,6 @@ public class DAOFactory {
     }
 
     public enum DAOType {
-        STUDENT, RESERVATION, ROOM
+        STUDENT, RESERVATION, USER, ROOM
     }
 }
